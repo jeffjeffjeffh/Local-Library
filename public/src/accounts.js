@@ -4,7 +4,9 @@ function findAccountById(accounts, id) {
 }
 
 function sortAccountsByLastName(accounts) {
-  const arrSorted = accounts.sort((a, b) => a.name.last - b.name.last);
+  const arrSorted = accounts.sort((a, b) => {
+    return a.name.last < b.name.last ? -1 : 1;
+  });
   return arrSorted;
 }
 
