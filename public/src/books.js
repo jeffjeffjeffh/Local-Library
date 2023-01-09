@@ -1,4 +1,7 @@
-function findAuthorById(authors, id) {}
+// Passing
+function findAuthorById(authors, id) {
+  return authors.find((author) => id == author.id);
+}
 
 function findBookById(books, id) {}
 
