@@ -28,7 +28,6 @@ function getBooksPossessedByAccount({ id }, books, authors) {
   const borrowedBooks = getBorrowedBooks(id, books);
   const borrowedAuthors = getAuthorObjects(borrowedBooks, authors);
   const newBooks = injectAuthors(borrowedBooks, borrowedAuthors);
-  console.log(newBooks);
   return newBooks;
 }
 
