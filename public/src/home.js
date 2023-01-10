@@ -22,6 +22,11 @@ function getBooksBorrowedCount(books) {
 // Passing
 function getMostCommonGenres(books) {
   arr = [];
+  /* 
+    Look for a genre match for each book. If a match is not found, add one to
+    the array and give it a count of 1. Otherwise, retrieve that genre's index
+    in the array and increase its count property by 1.
+  */
   books.forEach((book) => {
     if (!arr.find((genre) => genre.name == book.genre)) {
       arr.push({ name: book.genre, count: 1 });
@@ -32,13 +37,23 @@ function getMostCommonGenres(books) {
       arr[i].count += 1;
     }
   });
-  arr = arr.sort((a, b) => b.count - a.count).slice(0, 5);
-  return arr;
+  return getHighest(arr, 5);
 }
 
-function getMostPopularBooks(books) {}
+function getMostPopularBooks(books) {
+  let bestBooks = books.map((book) => {
+    return { name: book.title, count: book.borrows.length };
+  });
+  return getHighest(bestBooks, 5);
+}
 
 function getMostPopularAuthors(books, authors) {}
+
+// Helper function that sorts an array by its objects' 'count' property,
+// in descending order, and returns the top x.
+function getHighest(arr, count) {
+  return arr.sort((a, b) => b.count - a.count).slice(0, count);
+}
 
 module.exports = {
   getTotalBooksCount,
