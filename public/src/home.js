@@ -19,7 +19,22 @@ function getBooksBorrowedCount(books) {
   return count;
 }
 
-function getMostCommonGenres(books) {}
+// Passing
+function getMostCommonGenres(books) {
+  arr = [];
+  books.forEach((book) => {
+    if (!arr.find((genre) => genre.name == book.genre)) {
+      arr.push({ name: book.genre, count: 1 });
+    } else {
+      let i = arr.findIndex((genre) => {
+        return genre.name == book.genre;
+      });
+      arr[i].count += 1;
+    }
+  });
+  arr = arr.sort((a, b) => b.count - a.count).slice(0, 5);
+  return arr;
+}
 
 function getMostPopularBooks(books) {}
 
